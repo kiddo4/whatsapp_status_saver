@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:status_saver/Provider/bottom_nav_provider.dart';
+import 'package:status_saver/Provider/getStatusProvider.dart';
 import 'package:status_saver/Ui/Screens/splash_screen.dart';
 
 class MyApp extends StatelessWidget {
@@ -7,13 +10,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Status saver',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => BottomNavProvider()),
+        ChangeNotifierProvider(create: (_) => GetStatusProvider()),
+      ],
+      child: const MaterialApp(
+        home: SplashScreen(),
       ),
-      home: const SplashScreen(),
     );
   }
 }
