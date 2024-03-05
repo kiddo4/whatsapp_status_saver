@@ -60,13 +60,13 @@ class _VideoHomePageState extends State<VideoHomePage> {
                                       );
                                     },
                                     child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.amber,
-                                          image: DecorationImage(
-                                              image: FileImage(
-                                                  File(snapshot.data!))),
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
+                                      child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(10),
+                                          child: Image(
+                                                fit: BoxFit.fill,
+                                                image: FileImage(File(snapshot.data!))),
+                            
+                          ),
                                     ),
                                   )
                                 : const Center(
