@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:status_saver/Provider/getStatusProvider.dart';
-import 'package:status_saver/Screen/BottomNavPages/Image/image_view.dart';
+import 'package:status_saver/Ui/NavPages/ImagePage/image_view.dart';
 
 class ImageHomePage extends StatefulWidget {
   const ImageHomePage({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class _ImageHomePageState extends State<ImageHomePage> {
       }
       return file.isWhatsappAvailable == false
           ? const Center(
-              child: Text("Whatsapp not available"),
+              child: Text("Whatsapp not available on this device"),
             )
           : file.getImages.isEmpty
               ? const Center(
@@ -54,12 +54,14 @@ class _ImageHomePageState extends State<ImageHomePage> {
                           );
                         },
                         child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.amber,
-                              image: DecorationImage(
-                                  fit: BoxFit.cover,
+                       
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image(
+                                  fit: BoxFit.fill,
                                   image: FileImage(File(data.path))),
-                              borderRadius: BorderRadius.circular(10)),
+                            
+                          ),
                         ),
                       );
                     }),
